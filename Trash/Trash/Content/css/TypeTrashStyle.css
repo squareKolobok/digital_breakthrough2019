@@ -1,0 +1,117 @@
+﻿label {
+    width: 64px; /* Ширина рисунка */
+    height: 64px; /* Высота рисунка */
+    display: block; /* Блочный элемент */
+    position: relative; /* Относительное позиционирование */
+}
+
+input[type="checkbox"] + span {
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; /* Курсор в виде руки */
+}
+
+label input[type="checkbox"] {
+    display: none;
+}
+
+/*батарейки*/
+input[type="checkbox"] + .typeLamp {
+    background: url(../img/lamps_off.png) no-repeat; /* Фоновый рисунок */
+}
+
+input[type="checkbox"]:checked + .typeLamp {
+    background: url(../img/lamps.png) no-repeat;
+}
+
+/*пластик*/
+input[type="checkbox"] + .plastic {
+    background: url(../img/plastik_off.png) no-repeat;
+}
+
+input[type="checkbox"]:checked + .plastic {
+    background: url(../img/plastik.png) no-repeat;
+}
+
+/*бумага*/
+input[type="checkbox"] + .paper {
+    background: url(../img/paper_off.png) no-repeat;
+}
+
+input[type="checkbox"]:checked + .paper {
+    background: url(../img/paper.png) no-repeat;
+}
+
+/*стекло*/
+input[type="checkbox"] + .glass {
+    background: url(../img/glass_off.png) no-repeat;
+}
+
+input[type="checkbox"]:checked + .glass {
+    background: url(../img/glass.png) no-repeat;
+}
+
+/*ртуть*/
+input[type="checkbox"] + .mercury {
+    background: url(../img/danger_off.png) no-repeat;
+}
+
+input[type="checkbox"]:checked + .mercury {
+    background: url(../img/danger.png) no-repeat;
+}
+
+/*разное*/
+input[type="checkbox"] + .other {
+    background: url(../img/other_off.png) no-repeat;
+}
+
+input[type="checkbox"]:checked + .other {
+    background: url(../img/other.png) no-repeat;
+}
+
+#typetrash {
+    width: 254px;
+    position: absolute;
+    z-index: 1000;
+    background: #dbe1da;
+    height: 323px;
+    opacity: 0.95;
+    top: 201px;
+    left: 63px;
+}
+
+    #typetrash ul li {
+        display: inline-block;
+    }
+
+    #typetrash ul {
+        padding-left: 25px;
+    }
+
+
+    #typetrash h2 {
+        text-align: center;
+        font-style: italic;
+    }
+
+.map {
+    width: 100%;
+    height: 480px;
+}
+
+#typetrash h3 {
+    text-align: center;
+}
+
+#typetrash input[type=button] {
+    display: block;
+    margin-left: 90px;
+}
+
+#typetrash input[type=range] {
+    display: block;
+    margin-left: 38px;
+}

@@ -32,6 +32,7 @@ namespace Trash
         }
     }
 
+    /*
     // Настройка диспетчера пользователей приложения. UserManager определяется в ASP.NET Identity и используется приложением.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -106,4 +107,5 @@ namespace Trash
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
     }
+    */
 }

@@ -12,5 +12,10 @@ namespace Trash.Controllers
         {
             return View();
         }
+
+        public ActionResult Operator()
+        {
+            return View();
+        }
     }
 }

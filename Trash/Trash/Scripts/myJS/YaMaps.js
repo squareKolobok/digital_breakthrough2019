@@ -3,17 +3,41 @@ function YaMaps() {
     this.height = 0.000032;
     this.map;
     this.recicles = [];
+    this.Route = null;
+    this.RoutePoints = [];
 
-    //������������� �����
-    this.init = function(latitude, longitude) {
+    //инициализация карты
+    this.init = function (latitude, longitude) {
         ymaps.ready(
-            // �������� �����.    
+            // Создание карты.    
             this.map = new ymaps.Map("map", {
-                // ���������� ������ �����.
+                // Координаты центра карты.
                 center: [latitude, longitude],
-                // ������� ���������������. ���������� ��������: �� 0 (���� ���) �� 19.
-                zoom: 17
-            })
+                // Уровень масштабирования. Допустимые значения: от 0 (весь мир) до 19.
+                zoom: 12
+            }),
+
+            /*
+            //Создание макета содержимого балуна.
+            BalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+                '<div>' +
+                'test text' +
+                '</div>', {
+
+                    // слушать событие click на кнопке-счетчике.
+                    build: function () {
+                        BalloonContentLayout.superclass.build.call(this);
+                        // А затем выполняем дополнительные действия.
+                    },
+
+                    // Аналогично переопределяем функцию clear, чтобы снять
+                    // прослушивание клика при удалении макета с карты.
+                    clear: function () {
+
+                    }
+                }
+            )
+            */
         );
     }
 
@@ -21,11 +45,29 @@ function YaMaps() {
         return this.map.getZoom();
     }
 
-    //�������� ���������� � �������� �� �������
+    //нарисовать точки, находящиеся в заданном круге. радиус в метрах
+    this.DrawInCircle = function (lon, lat, radius) {
+        this.Clear();
+
+        var maptmp = this.map;
+        this.recicles.forEach(function (key) { maptmp.geoObjects.add(key);})
+
+        var circle = new ymaps.Circle([[lon, lat], radius], {}, {});
+        this.map.geoObjects.add(circle);
+        var result = ymaps.geoQuery(this.map.geoObjects).searchInside(circle).clusterize();
+
+        this.Clear();
+        /*var myClusterer = new ymaps.Clusterer();
+        myClusterer.add(result);
+        this.map.geoObjects.add(myClusterer);*/
+        this.map.geoObjects.add(result);
+    }
+
+    //получить координаты и передать их функции
     this.GetLocation = function (func) {
         var location = ymaps.geolocation.get();
 
-        // ����������� ��������� ������.
+        // Асинхронная обработка ответа.
         location.then(
             function (result) {
                 var position = result.geoObjects.position;
@@ -35,49 +77,37 @@ function YaMaps() {
         );
     }
 
-    this.AddPlaceMark = function(latitude, longitude, colors) {
+    //добавить метку в список меток
+    this.AddPlaceMark = function (latitude, longitude, mark) {
         var dataTrash = [];
+        var StrType = "<div>";
 
-        for (var i = 0; i < colors.length; i++) {
-            dataTrash.push({ weight: 1, color: colors[i] });
+        for (var i = 0; i < mark.length; i++) {
+            dataTrash.push({ weight: 1, color: mark[i].color });
+            StrType += "<span>" + mark[i].type + ", заполнено на " + mark[i].full + "%</span><br>";
         }
-        
+
+        StrType += "</div>";
         var myPlacemark = new ymaps.Placemark([latitude, longitude], {
-            //������ ��� ���������
+            //данные для диаграммы
             data: dataTrash,
+            //содержимое заголовка балуна.
+            balloonContentHeader: '<h2>Бак</h2>',
+            //содержимое основной части балуна.
+            balloonContentBody: StrType,
+            //содержимое нижней части балуна.
+            balloonContentFooter: 'Информация предоставлена:<br/>OOO "Рога и копыта"',
             iconContent: ''
         }, {
                 iconLayout: 'default#pieChart'
             });
 
-        //return myPlacemark;
+        //обработка нажатия на контейнер
+        myPlacemark.events.add('click', function () { myPlacemark.balloon.open() });
         this.recicles.push(myPlacemark);
     }
 
-    /*
-    this.AddRoute = function(latitude, longitude) {
-        var location = ymaps.geolocation.get();
-
-        // ����������� ��������� ������.
-        location.then(
-            function (result) {
-                var position = result.geoObjects.position;
-
-                var multiRoute = new ymaps.multiRouter.MultiRoute({
-                    referencePoints: [
-                        position,
-                        [latitude, longitude]
-                    ]
-                });
-
-                this.map.geoObjects.add(multiRoute);
-
-                return multiRoute;
-            }
-        );
-    }
-    */
-
+    //нарисовать список объектов
     this.DrawingObj = function () {
         this.Clear();
         var myClusterer = new ymaps.Clusterer();
@@ -85,52 +115,35 @@ function YaMaps() {
         this.map.geoObjects.add(myClusterer);
     };
 
+    //очистить список объектов
+    this.RemoveRecicles = function(){
+        this.recicles = [];
+    }
+
+    //удалить все объекты с карты
     this.Clear = function () {
         this.map.geoObjects.removeAll();
-        /*map.poligons.forEach(function (key) { map.myMap.geoObjects.remove(key) });
-        map.unions.forEach(function (key) { map.myMap.geoObjects.remove(key) });
-        map.poligons = [];
-        map.unions = [];*/
     }
 
-    /*
-    function GetCluster(objs, map) {
-        var clusterer = new ymaps.Clusterer({
+    //создать маршрут
+    this.CreateRoute = function () {
+
+        this.Route = new ymaps.multiRouter.MultiRoute({
+            referencePoints: this.RoutePoints
         });
 
-        objs.forEach(function (key) { clusterer.add(key) });
-
-        map.myMap.geoObjects.add(clusterer);
+        this.map.geoObjects.add(this.Route);
     }
-    */
 
-    /*
-    function GetPlaceMark(latitude, longitude, plases) {
-        var myPlacemark = new ymaps.Placemark([latitude, longitude], {
-            //������ ��� ���������
-            data: plases,
-            iconContent: plases[0].weight + '/' + (plases[1].weight + plases[0].weight)
-        }, {
-                iconLayout: 'default#pieChart',
-            });
-
-        return myPlacemark;
+    //удалить маршрут с карты
+    this.DeleteRoute = function () {
+        if (this.Route != null)
+            this.map.geoObjects.remove(this.Route);
     }
-    */
 
-    /*
-    function DravingList(poligons, map) {
-        map.Clear(map);
-        poligons.forEach(function (key) { map.myMap.geoObjects.add(key) });
-        DrawRout(map);
+    //удалить информацию о маршруте
+    this.ClearRoute = function(){
+        this.DeleteRoute();
+        this.Route = null;
     }
-    */
-
-    /*
-    function DrawingObj(obj, map) {
-        map.Clear(map);
-        map.myMap.geoObjects.add(obj);
-        DrawRout(map);
-    };
-    */
 }

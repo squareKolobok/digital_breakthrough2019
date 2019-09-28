@@ -11,6 +11,7 @@ namespace Trash
 {
     public partial class Startup
     {
+        /*
         // Дополнительные сведения о настройке аутентификации см. на странице https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -64,5 +65,6 @@ namespace Trash
             //    ClientSecret = ""
             //});
         }
+        */
     }
 }

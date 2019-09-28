@@ -1,0 +1,29 @@
+﻿.body {
+    font-family: arial;
+}
+
+.head {
+    border-bottom: 4px solid #bfbfbf;
+    background-color: #f7f8f7;
+    height: 119px;
+    background-image: url(../img/header.png);
+    background-repeat: no-repeat;
+}
+
+.menuHead {
+    height: 35px;
+    text-align: right;
+    background-color: #bfbfbf;
+    width: 700px;
+    position: absolute;
+    top: 96px;
+    right: 8px;
+}
+
+.menuHead span {
+    color: white;
+    padding: 20px;
+    font-size: 25px;
+    text-transform: lowercase;
+    font-family: arial;
+}

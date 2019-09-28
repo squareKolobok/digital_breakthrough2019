@@ -1,0 +1,18 @@
+﻿<div id="typetrash">
+    <h2>Выбор типов</h2>
+
+    <ul>
+        <li><label><input type="checkbox" name="type" value="1" checked /><span class="typeLamp"></span></label></li>
+        <li><label><input type="checkbox" name="type" value="2" checked /><span class="plastic"></span></label></li>
+        <li><label><input type="checkbox" name="type" value="3" checked /><span class="paper"></span></label></li>
+        <li><label><input type="checkbox" name="type" value="4" checked /><span class="glass"></span></label></li>
+        <li><label><input type="checkbox" name="type" value="5" checked /><span class="mercury"></span></label></li>
+        <li><label><input type="checkbox" name="type" value="6" checked /><span class="other"></span></label></li>
+    </ul>
+
+    <h3>Радиус поиска</h3>
+    <input id="range" type="range" min="300" max="5000" step="200" value="1000">
+    <input type="button" id="radius" value="1000м" />
+</div>
+
+@Styles.Render("~/Content/css/TypeTrashStyle.css")
