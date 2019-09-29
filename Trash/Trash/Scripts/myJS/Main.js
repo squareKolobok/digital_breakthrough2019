@@ -1,7 +1,9 @@
 window.onload = function () {
     var tc = new MapTypeColor();
     var map = new YaMaps();
+    var hideMenu = false;
     map.init('55.836289', '49.108795');
+    map.zavods = [['55.8818', '49.0306'], ['55.786388', '49.130366'], ['55.8732', '49.1450785']];
     getTrash(DrawObjs);
 
     function DrawObjs(objs) {
@@ -19,6 +21,7 @@ window.onload = function () {
         }
 
         map.DrawingObj();
+        map.DrawZavods();
     }
 
     //получить список нажатых чекбоксов
@@ -47,6 +50,18 @@ window.onload = function () {
     document.getElementById("range").addEventListener('change', function () {
         document.getElementById("radius").value = document.getElementById("range").value + 'м';
     })
+
+    document.getElementById('hideMenu').addEventListener('click', function () {
+        if (hideMenu) {
+            document.getElementById('typetrash').style = 'display: block';
+        }
+        else {
+            document.getElementById('typetrash').style = 'display: none';
+        }
+
+        hideMenu = !hideMenu;
+    })
+    
 }
 
 function getTrash(func) {

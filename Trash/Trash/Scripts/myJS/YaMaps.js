@@ -5,6 +5,7 @@ function YaMaps() {
     this.recicles = [];
     this.Route = null;
     this.RoutePoints = [];
+    this.zavods = [];
 
     //инициализация карты
     this.init = function (latitude, longitude) {
@@ -16,33 +17,31 @@ function YaMaps() {
                 // Уровень масштабирования. Допустимые значения: от 0 (весь мир) до 19.
                 zoom: 12
             }),
-
-            /*
-            //Создание макета содержимого балуна.
-            BalloonContentLayout = ymaps.templateLayoutFactory.createClass(
-                '<div>' +
-                'test text' +
-                '</div>', {
-
-                    // слушать событие click на кнопке-счетчике.
-                    build: function () {
-                        BalloonContentLayout.superclass.build.call(this);
-                        // А затем выполняем дополнительные действия.
-                    },
-
-                    // Аналогично переопределяем функцию clear, чтобы снять
-                    // прослушивание клика при удалении макета с карты.
-                    clear: function () {
-
-                    }
-                }
-            )
-            */
         );
     }
 
     this.GetSize = function() {
         return this.map.getZoom();
+    }
+
+    //нарисовать заводы
+    this.DrawZavods = function () {
+        var myClusterer = new ymaps.Clusterer();
+
+        for (var i = 0; i < this.zavods.length; i++) {
+            var myPlacemark = new ymaps.Placemark(this.zavods[i], {
+                iconContent: 'завод по переработке'
+            }, {
+                    iconLayout: 'default#image',
+                    iconImageHref: '/Content/img/zavod.png',
+                    iconImageSize: [100, 70],
+                    iconImageOffset: [-5, -38]
+                });
+
+            myClusterer.add(myPlacemark);
+        }
+
+        this.map.geoObjects.add(myClusterer);
     }
 
     //нарисовать точки, находящиеся в заданном круге. радиус в метрах
@@ -57,9 +56,6 @@ function YaMaps() {
         var result = ymaps.geoQuery(this.map.geoObjects).searchInside(circle).clusterize();
 
         this.Clear();
-        /*var myClusterer = new ymaps.Clusterer();
-        myClusterer.add(result);
-        this.map.geoObjects.add(myClusterer);*/
         this.map.geoObjects.add(result);
     }
 

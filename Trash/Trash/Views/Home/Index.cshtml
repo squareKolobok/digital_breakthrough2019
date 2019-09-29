@@ -1,12 +1,8 @@
-﻿@{
-    ViewBag.Title = "Карта пользователя";
+﻿
+@{
+    ViewBag.Title = "Главная";
 }
 
-<div>
-    @Html.Partial("_MenuFilter")
-    <div id="map" class="map"></div>
-</div>
+@Html.ActionLink("карта пользователя", "UserMap");
+@Html.ActionLink("карта оператора", "Operator")
 
-@Scripts.Render("~/Scripts/myJS/YaMaps.js")
-@Scripts.Render("~/Scripts/myJS/TypeColor.js")
-@Scripts.Render("~/Scripts/myJS/main.js")

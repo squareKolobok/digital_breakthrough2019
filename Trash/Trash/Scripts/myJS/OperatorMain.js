@@ -4,6 +4,8 @@ window.onload = function () {
     var trashs = [];
     var drawtrash = [];
     map.init('55.836289', '49.108795');
+    map.zavods = [['55.8818', '49.0306'], ['55.786388', '49.130366'], ['55.8732', '49.1450785']];
+    map.DrawZavods();
 
     function DrawObjs(objs, rewrite = true) {
         if (rewrite) {
@@ -24,6 +26,7 @@ window.onload = function () {
         }
 
         map.DrawingObj();
+        map.DrawZavods();
     }
 
     //получить нажатую радио
