@@ -1,0 +1,66 @@
+﻿input[type="radio"] + span {
+    position: absolute; /* Абсолютное позиционирование */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; /* Курсор в виде руки */
+}
+
+label input[type="radio"] {
+    display: none;
+}
+
+/*батарейки*/
+input[type="radio"] + .typeLamp {
+    background: url(../img/lamps_off.png) no-repeat; /* Фоновый рисунок */
+}
+
+input[type="radio"]:checked + .typeLamp {
+    background: url(../img/lamps.png) no-repeat;
+}
+
+/*пластик*/
+input[type="radio"] + .plastic {
+    background: url(../img/plastik_off.png) no-repeat;
+}
+
+input[type="radio"]:checked + .plastic {
+    background: url(../img/plastik.png) no-repeat;
+}
+
+/*бумага*/
+input[type="radio"] + .paper {
+    background: url(../img/paper_off.png) no-repeat;
+}
+
+input[type="radio"]:checked + .paper {
+    background: url(../img/paper.png) no-repeat;
+}
+
+/*стекло*/
+input[type="radio"] + .glass {
+    background: url(../img/glass_off.png) no-repeat;
+}
+
+input[type="radio"]:checked + .glass {
+    background: url(../img/glass.png) no-repeat;
+}
+
+/*ртуть*/
+input[type="radio"] + .mercury {
+    background: url(../img/danger_off.png) no-repeat;
+}
+
+input[type="radio"]:checked + .mercury {
+    background: url(../img/danger.png) no-repeat;
+}
+
+/*разное*/
+input[type="radio"] + .other {
+    background: url(../img/other_off.png) no-repeat;
+}
+
+input[type="radio"]:checked + .other {
+    background: url(../img/other.png) no-repeat;
+}

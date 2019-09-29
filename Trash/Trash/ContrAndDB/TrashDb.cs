@@ -73,6 +73,32 @@ namespace Trash.ContrAndDB
         }
 
         /// <summary>
+        /// получить список мусорок оператора
+        /// </summary>
+        /// <param name="id">id оператора</param>
+        public List<trashObj> GetTrashOperator(int id)
+        {
+            var oper = db.t_operators.FirstOrDefault(x => x.id == id);
+
+            if (oper == null)
+                return new List<trashObj>();
+
+            return oper.t_oper_trash.Select(x => x.t_trash).Select(x => new trashObj()
+            {
+                id = x.id,
+                res = x.t_res.Select(y => new Res()
+                {
+                    id = y.id,
+                    ownerId = y.owner_id,
+                    tipId = y.tip_id,
+                    val = y.val
+                }).ToList(),
+                x = x.x,
+                y = x.y
+            }).ToList();
+        }
+
+        /// <summary>
         /// получить список типов
         /// </summary>
         /// <returns></returns>

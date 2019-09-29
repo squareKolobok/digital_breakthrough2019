@@ -128,6 +128,7 @@ function YaMaps() {
     //создать маршрут
     this.CreateRoute = function () {
 
+        this.DeleteRoute();
         this.Route = new ymaps.multiRouter.MultiRoute({
             referencePoints: this.RoutePoints
         });
@@ -144,6 +145,7 @@ function YaMaps() {
     //удалить информацию о маршруте
     this.ClearRoute = function(){
         this.DeleteRoute();
+        this.RoutePoints = [];
         this.Route = null;
     }
 }

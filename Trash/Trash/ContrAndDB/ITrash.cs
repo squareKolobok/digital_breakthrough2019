@@ -15,5 +15,7 @@ namespace Trash.ContrAndDB
         List<t_tip> GetTypes();
 
         List<trashObj> GetTrashFilter(List<int> fltr);
+
+        List<trashObj> GetTrashOperator(int id);
     }
 }

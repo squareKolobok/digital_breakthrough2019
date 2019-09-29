@@ -1,14 +1,20 @@
 ﻿<div id="typetrash">
-    <h2>Выбор типов</h2>
+    <h2>Выбор оператора</h2>
 
     <ul>
-        <li><label><input type="checkbox" name="type" value="1" checked /><span class="typeLamp"></span></label></li>
-        <li><label><input type="checkbox" name="type" value="2" checked /><span class="plastic"></span></label></li>
-        <li><label><input type="checkbox" name="type" value="3" checked /><span class="paper"></span></label></li>
-        <li><label><input type="checkbox" name="type" value="4" checked /><span class="glass"></span></label></li>
-        <li><label><input type="checkbox" name="type" value="5" checked /><span class="mercury"></span></label></li>
-        <li><label><input type="checkbox" name="type" value="6" checked /><span class="other"></span></label></li>
+        <li><label title="Компания 1"><input type="radio" name="type" value="1" /><span class="typeLamp"></span></label></li>
+        <li><label title="Компания 2"><input type="radio" name="type" value="2" /><span class="plastic"></span></label></li>
+        <li><label title="Компания 3"><input type="radio" name="type" value="3" /><span class="paper"></span></label></li>
+        <li><label title="Компания 4"><input type="radio" name="type" value="4" /><span class="glass"></span></label></li>
+        <li><label title="Компания 5"><input type="radio" name="type" value="5" /><span class="mercury"></span></label></li>
+        <li><label title="Компания 6"><input type="radio" name="type" value="6" /><span class="other"></span></label></li>
     </ul>
+
+    <h3>Фильтр по заполненности</h3>
+    <input id="range" type="range" min="0" max="2" step="1" value="0">
+    <input type="button" id="filterTrash" value="Отфильтровать" />
+    <input type="button" id="rout" value="Построить маршрут" />
 </div>
 
 @Styles.Render("~/Content/css/TypeTrashStyle.css")
+@Styles.Render("~/Content/css/OperatorStyle.css")

@@ -190,11 +190,17 @@
     <Compile Include="ContrAndDB\ITrash.cs" />
     <Compile Include="ContrAndDB\TrashDb.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OperatorController.cs" />
     <Compile Include="Controllers\TrashController.cs" />
     <Compile Include="db\Trash.cs" />
+    <Compile Include="db\t_operators.cs" />
+    <Compile Include="db\t_oper_trash.cs" />
     <Compile Include="db\t_res.cs" />
+    <Compile Include="db\t_status.cs" />
     <Compile Include="db\t_tip.cs" />
     <Compile Include="db\t_trash.cs" />
+    <Compile Include="db\t_users.cs" />
+    <Compile Include="db\t_user_trash.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +216,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\FloorStyle.css" />
     <Content Include="Content\css\HeadStyle.css" />
+    <Content Include="Content\css\OperatorStyle.css" />
     <Content Include="Content\css\TypeTrashStyle.css" />
     <Content Include="Content\img\danger.png" />
     <Content Include="Content\img\danger_off.png" />
@@ -242,6 +249,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\myJS\OperatorMain.js" />
     <Content Include="Scripts\myJS\Main.js" />
+    <Content Include="Scripts\myJS\Fulling.js" />
     <Content Include="Scripts\myJS\TypeColor.js" />
     <Content Include="Scripts\myJS\YaMaps.js" />
     <Content Include="Web.config" />
