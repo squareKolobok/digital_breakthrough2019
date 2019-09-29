@@ -17,6 +17,7 @@ window.onload = function () {
                 types.push(key.res[j]);
             }
 
+            //map.AddPlaceMark(key.x, key.y, tc.GetColors(types));
             map.AddPlaceMark(key.x, key.y, tc.GetColors(types), objs[i].id, getLider);
         }
 

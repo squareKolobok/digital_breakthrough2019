@@ -33,7 +33,7 @@ namespace Trash.ContrAndDB
         /// </summary>
         public List<trashObj> GetTrash()
         {
-            return db.t_trash.ToList().Select(x => new trashObj()
+            var r = db.t_trash.ToList().Select(x => new trashObj()
             {
                 id = x.id,
                 res = x.t_res.Select(y => new Res()
@@ -46,6 +46,8 @@ namespace Trash.ContrAndDB
                 x = x.x,
                 y = x.y
             }).ToList();
+
+            return r;
         }
 
         /// <summary>
