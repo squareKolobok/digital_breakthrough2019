@@ -204,6 +204,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LiderTrash.cs" />
     <Compile Include="Models\Res.cs" />
     <Compile Include="Models\trashObj.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

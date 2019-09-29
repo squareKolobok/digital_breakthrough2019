@@ -74,7 +74,7 @@ function YaMaps() {
     }
 
     //добавить метку в список меток
-    this.AddPlaceMark = function (latitude, longitude, mark) {
+    this.AddPlaceMark = function (latitude, longitude, mark, id = 0, lider = null) {
         var dataTrash = [];
         var StrType = "<div>";
 
@@ -98,6 +98,10 @@ function YaMaps() {
                 iconLayout: 'default#pieChart'
             });
 
+        if (lider != null) {
+            //var cont = myPlacemark.properties.get('balloonContentBody');
+            lider(myPlacemark, id, StrType);
+        }
         //обработка нажатия на контейнер
         myPlacemark.events.add('click', function () { myPlacemark.balloon.open() });
         this.recicles.push(myPlacemark);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using Trash.db;
 using Trash.Models;
@@ -105,6 +106,19 @@ namespace Trash.ContrAndDB
         public List<t_tip> GetTypes()
         {
             return db.t_tip.ToList();
+        }
+
+        public LiderTrash Lider(int id)
+        {
+            using (var db1 = new Trash.db.Trash())
+            {
+                return db1.t_user_trash.Join(
+                    db1.t_users,
+                    x => x.user_id,
+                    y => y.user_id,
+                    (x, y) => new LiderTrash() { fio = y.fio, val = y.t_user_trash.Sum(z => (int)z.val_user) })
+                    .FirstOrDefault();
+            }
         }
     }
 }

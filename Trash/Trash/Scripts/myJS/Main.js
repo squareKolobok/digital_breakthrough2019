@@ -17,7 +17,7 @@ window.onload = function () {
                 types.push(key.res[j]);
             }
 
-            map.AddPlaceMark(key.x, key.y, tc.GetColors(types));
+            map.AddPlaceMark(key.x, key.y, tc.GetColors(types), objs[i].id, getLider);
         }
 
         map.DrawingObj();
@@ -89,6 +89,23 @@ function getTrashFilter(func, filter) {
         },
         error: function (e) {
             alert('err');
+            console.log(e);
+        }
+
+    });
+}
+
+function getLider(place, id, str) {
+
+    $.ajax({
+        type: "GET",
+        url: "/api/Trash/"+ id,
+        success: function (res) {
+            place.properties.set('balloonContentBody', 'Лидер: ' + res.fio + '</br> собрал ' + res.val + 'л</br>'+str);
+            //func(res);
+        },
+        error: function (e) {
+            console.log('err');
             console.log(e);
         }
 

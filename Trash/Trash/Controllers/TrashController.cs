@@ -30,12 +30,11 @@ namespace Trash.Controllers
             return db.GetTrashFilter(filter);
         }
         
-        /*
-        [Route("api/TrashFilter")]
-        [HttpPost]
-        public string GetFilter([FromBody]string filter)
+        [Route("api/Trash/{id:int}")]
+        [HttpGet]
+        public LiderTrash GetLider(int id)
         {
-            return filter;
-        }*/
+            return db.Lider(id);
+        }
     }
 }
